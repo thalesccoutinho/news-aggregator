@@ -1,0 +1,194 @@
+/* ── Reset & base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --pink: #e91e8c;
+  --pink-light: #fce4f3;
+  --pink-dark: #c01577;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-600: #6c757d;
+  --gray-900: #212529;
+  --radius: 12px;
+  --shadow: 0 2px 12px rgba(0,0,0,.08);
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--gray-100);
+  color: var(--gray-900);
+  line-height: 1.6;
+}
+
+a { color: var(--pink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+header {
+  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
+  color: #fff;
+  padding: 2rem 1rem 1.5rem;
+  text-align: center;
+}
+.header-inner h1 { font-size: 2rem; letter-spacing: -0.5px; }
+.subtitle { opacity: .85; margin-top: .25rem; }
+.refresh-info { display: inline-block; margin-top: .75rem; font-size: .8rem; opacity: .75; }
+
+/* ── Trending ─────────────────────────────────────────────────────────────── */
+.trending-section {
+  max-width: 860px;
+  margin: 1.5rem auto;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.5rem;
+}
+.trending-section h2 { font-size: 1.1rem; margin-bottom: 1rem; }
+.trend-item {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: .5rem;
+}
+.trend-label { width: 130px; font-size: .85rem; flex-shrink: 0; text-transform: capitalize; }
+.trend-bar-bg { flex: 1; background: var(--gray-200); border-radius: 99px; height: 10px; overflow: hidden; }
+.trend-bar { height: 100%; background: linear-gradient(90deg, var(--pink), var(--pink-dark)); border-radius: 99px; transition: width .6s ease; }
+.trend-count { width: 28px; text-align: right; font-size: .8rem; color: var(--gray-600); }
+
+/* ── Filters ──────────────────────────────────────────────────────────────── */
+.filters {
+  max-width: 860px;
+  margin: 0 auto 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  padding: 0 .5rem;
+}
+.filter-btn {
+  background: #fff;
+  border: 2px solid var(--gray-200);
+  border-radius: 99px;
+  padding: .35rem 1rem;
+  font-size: .85rem;
+  cursor: pointer;
+  transition: all .2s;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: #fff;
+}
+
+/* ── Articles grid ────────────────────────────────────────────────────────── */
+.articles-grid {
+  max-width: 860px;
+  margin: 0 auto 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  padding: 0 .5rem;
+}
+
+/* ── Card ─────────────────────────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.1rem 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  transition: box-shadow .2s;
+}
+.card:hover { box-shadow: 0 4px 20px rgba(233,30,140,.15); }
+.card.hidden { display: none; }
+.full-width { grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--gray-600); }
+
+.card-meta { display: flex; gap: .5rem; flex-wrap: wrap; }
+
+.source-badge {
+  font-size: .7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: .15rem .55rem;
+  border-radius: 99px;
+  color: #fff;
+}
+.source-g1          { background: #0a84ff; }
+.source-uol         { background: #f7a600; }
+.source-terra       { background: #009900; }
+.source-minha-vida    { background: #e91e8c; }
+.source-healthline    { background: #c0392b; }
+.source-women\'s-health { background: #8e44ad; }
+.source-self          { background: #2980b9; }
+.source-greatist      { background: #16a085; }
+.source-popsugar-fitness { background: #d35400; }
+.source-myfitnesspal  { background: #27ae60; }
+.source-healthywomen  { background: #e74c3c; }
+.source-folha         { background: #2c3e50; }
+
+.category-tag {
+  font-size: .72rem;
+  padding: .15rem .55rem;
+  border-radius: 99px;
+  background: var(--pink-light);
+  color: var(--pink-dark);
+  font-weight: 600;
+}
+
+.card-title { font-size: .95rem; line-height: 1.4; }
+.card-title a { color: var(--gray-900); }
+.card-title a:hover { color: var(--pink); text-decoration: none; }
+
+.card-summary { font-size: .83rem; color: var(--gray-600); }
+
+.ai-summary-box {
+  background: var(--pink-light);
+  border-left: 3px solid var(--pink);
+  border-radius: 6px;
+  padding: .7rem .85rem;
+  font-size: .83rem;
+  color: #5a1040;
+}
+
+.btn-ai {
+  margin-top: auto;
+  align-self: flex-start;
+  background: none;
+  border: 1.5px solid var(--pink);
+  color: var(--pink);
+  border-radius: 99px;
+  padding: .3rem .9rem;
+  font-size: .8rem;
+  cursor: pointer;
+  transition: all .2s;
+}
+.btn-ai:hover { background: var(--pink); color: #fff; }
+.btn-ai:disabled { opacity: .5; cursor: default; }
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+footer {
+  text-align: center;
+  padding: 1.5rem 1rem 2rem;
+  color: var(--gray-600);
+  font-size: .85rem;
+}
+.btn-refresh {
+  background: var(--pink);
+  color: #fff;
+  border: none;
+  border-radius: 99px;
+  padding: .55rem 1.5rem;
+  font-size: .9rem;
+  cursor: pointer;
+  margin-bottom: .75rem;
+  transition: background .2s;
+}
+.btn-refresh:hover { background: var(--pink-dark); }
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .header-inner h1 { font-size: 1.5rem; }
+  .articles-grid { grid-template-columns: 1fr; }
+  .trend-label { width: 90px; }
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saúde Feminina — Agregador de Notícias</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <h1>🌸 Saúde Feminina</h1>
+      <p class="subtitle">Notícias de emagrecimento, fitness e saúde da mulher</p>
+      <span class="refresh-info">Atualizado às <strong>{{ last_refresh }}</strong></span>
+    </div>
+  </header>
+
+  <!-- Trending -->
+  <section class="trending-section">
+    <h2>🔥 Trending agora</h2>
+    <div class="trending-bar-wrapper">
+      {% if trending %}
+        {% set max_count = trending[0][1] %}
+        {% for kw, count in trending %}
+        <div class="trend-item">
+          <span class="trend-label">{{ kw }}</span>
+          <div class="trend-bar-bg">
+            <div class="trend-bar" style="width: {{ (count / max_count * 100)|round }}%"></div>
+          </div>
+          <span class="trend-count">{{ count }}</span>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p class="empty">Nenhuma tendência detectada.</p>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- Category filters -->
+  <section class="filters">
+    <button class="filter-btn active" data-category="">Todas</button>
+    {% for cat in categories %}
+    <button class="filter-btn" data-category="{{ cat }}">{{ cat }}</button>
+    {% endfor %}
+  </section>
+
+  <!-- Articles grid -->
+  <main class="articles-grid" id="articles-grid">
+    {% for article in articles %}
+    <article class="card" data-category="{{ article.category }}" data-id="{{ article.id }}">
+      <div class="card-meta">
+        <span class="source-badge source-{{ article.source | lower | replace(' ', '-') }}">{{ article.source }}</span>
+        <span class="category-tag">{{ article.category }}</span>
+      </div>
+      <h3 class="card-title">
+        <a href="{{ article.link }}" target="_blank" rel="noopener">{{ article.title }}</a>
+      </h3>
+      {% if article.summary %}
+      <p class="card-summary">{{ article.summary | striptags | truncate(160) }}</p>
+      {% endif %}
+      <div class="ai-summary-box" id="ai-{{ article.id }}" style="display:none"></div>
+      <button class="btn-ai" data-id="{{ article.id }}">✨ Resumir com IA</button>
+    </article>
+    {% else %}
+    <p class="empty full-width">Nenhuma notícia carregada ainda. Aguarde ou clique em Atualizar.</p>
+    {% endfor %}
+  </main>
+
+  <footer>
+    <button id="btn-refresh" class="btn-refresh">🔄 Atualizar notícias</button>
+    <p>Próxima atualização automática em <span id="countdown">30:00</span></p>
+  </footer>
+
+  <script src="/static/js/main.js"></script>
+</body>
+</html>
