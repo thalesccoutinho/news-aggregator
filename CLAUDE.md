@@ -51,3 +51,17 @@ Requires Python 3.9+ (uses `from __future__ import annotations` for compatibilit
 ## Environment
 
 Single required env var: `ANTHROPIC_API_KEY` in `.env` file. Without it, AI summaries return an error message but the rest of the app works normally.
+
+## GitHub repository
+
+Repo: **https://github.com/thalesccoutinho/news-aggregator**
+
+A `post-commit` hook (`.git/hooks/post-commit`) automatically pushes to `origin main` after every commit. So the workflow to publish changes is simply:
+
+```bash
+git add -A
+git commit -m "descrição da alteração"
+# push happens automatically
+```
+
+**Important:** `.env` is in `.gitignore` — never commit it. The `.env.example` file documents the required variable without the real key.
